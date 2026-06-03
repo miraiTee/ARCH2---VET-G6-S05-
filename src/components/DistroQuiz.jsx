@@ -1,5 +1,47 @@
+/**
+ * DistroQuiz.jsx
+ *
+ * A multi-step "which Linux distro fits you?" quiz. The viewer answers a few
+ * questions, each answer adds points to different distros, and the highest-scoring
+ * distro is shown as the recommendation at the end.
+ *
+ * ## Learning Notes
+ * This component demonstrates several key React concepts:
+ * - Multiple pieces of state: We track three things at once with useState --
+ *   which screen we're on (`step`), the answers chosen so far (`answers`), and the
+ *   option highlighted on the current question (`selected`).
+ * 
+ * - Conditional rendering: Instead of separate pages, one component shows the
+ *   intro, a question, or the result depending on `step`. The `{condition && <…/>}`
+ *   pattern renders a block only when the condition is true.
+ * 
+ * - Lists with .map(): Questions, options, progress bars, and tags are all
+ *   arrays turned into JSX with `.map()`. Each item needs a unique `key`.
+ * 
+ * - Updating state immutably: We never push into the old array. Instead we make
+ *   a new one with `[...prev, selected]` so React notices the change and re-renders.
+ * 
+ * - Data-driven UI: All the content lives in plain objects/arrays near the top
+ *   (`questions`, `distros`, `scoring`). The JSX below just renders whatever's there,
+ *   so you can edit the quiz without touching the component logic.
+ *
+ * ## Props
+ *   None. The quiz is self-contained -- just drop it in:
+ *
+ * ## Usage Example
+ *   <DistroQuiz />
+ *
+ * ## How to customize
+ *   - Add or edit a question        -> the `questions` array
+ *   - Add or edit a distro          -> the `distros` object
+ *   - Change how answers score      -> the `scoring` map (answer id -> distro points)
+ */
+
 import { useState } from "react";
 
+// -- Quiz data --------------------------------------------
+// Each question has display text and a list of options. Every option has a unique
+// `id` (used for scoring), a short `label`, and a longer `desc`.
 const questions = [
   {
     text: "How much Linux experience do you have?",
@@ -47,6 +89,8 @@ const questions = [
   },
 ];
 
+// Every distro the quiz can recommend. The key (e.g. "mint") is what the scoring
+// map below refers to; the object holds everything shown on the result screen.
 const distros = {
   mint: {
     name: "Linux Mint",
@@ -149,7 +193,9 @@ const distros = {
   },
 };
 
-// Map answer IDs to points towards a certain distro
+// Maps each answer's id to the distros it rewards, and by how much.
+// Example: choosing "new" gives Mint 3 points, Zorin 3, Ubuntu 2, Pop!_OS 1.
+// An answer can favour several distros, and many answers can stack onto the same one.
 const scoring = {
   new: { mint: 3, zorin: 3, ubuntu: 2, popos: 1 },
   some: { ubuntu: 2, mint: 2, popos: 2, zorin: 1, manjaro: 1 },
@@ -172,15 +218,28 @@ const scoring = {
   bleeding: { arch: 3, fedora: 2, manjaro: 2, cachyos: 2, endeavour: 2 },
 };
 
+// Tally the answers and return the winning distro object.
 function getResult(answers) {
+  // Start every distro at 0 points: { mint: 0, ubuntu: 0, ... }
   const scores = Object.fromEntries(Object.keys(distros).map((d) => [d, 0]));
+
+  // For each answer the user picked, add its points to the matching distros.
+  // `scoring[a] ?? {}` falls back to an empty object if an answer has no points.
   answers.forEach((a) => {
     const pts = scoring[a] ?? {};
     Object.entries(pts).forEach(([d, v]) => { scores[d] += v; });
   });
-  return distros[Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0]];
+
+  // Sort the [distroKey, score] pairs from highest to lowest and take the top one.
+  // sort((a, b) => b[1] - a[1]) orders by score descending; [0][0] is that winner's key.
+  const winnerKey = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+  return distros[winnerKey];
 }
 
+// -- Styles -----------------------------------------------
+// Some styles are functions that take a flag and return a style object, so the look
+// can change with state (e.g. an option button looks different when it's active).
+// The var(--…) values are CSS custom properties defined by the page's theme.
 const styles = {
   progressBar: (filled) => ({
     flex: 1,
@@ -239,34 +298,41 @@ const styles = {
 };
 
 export default function DistroQuiz() {
+  // `step` drives which screen shows: 0 = intro, 1..totalQ = questions, >totalQ = result.
   const [step, setStep] = useState(0);
+  // `answers` collects the chosen option id from each question, in order.
   const [answers, setAnswers] = useState([]);
+  // `selected` is the option highlighted on the current question, before "Next" is clicked.
   const [selected, setSelected] = useState(null);
 
+  // These are derived from state -- recalculated on every render, no extra useState needed.
   const totalQ = questions.length;
   const isIntro = step === 0;
   const isResult = step > totalQ;
-  const currentQ = questions[step - 1];
+  const currentQ = questions[step - 1]; // step 1 maps to questions[0], etc.
 
+  // Lock in the selected answer and advance to the next screen.
   function handleNext() {
-    if (!selected) return;
-    setAnswers((prev) => [...prev, selected]);
-    setSelected(null);
+    if (!selected) return; // do nothing until an option is chosen
+    setAnswers((prev) => [...prev, selected]); // new array = React re-renders
+    setSelected(null); // clear the highlight for the next question
     setStep((s) => s + 1);
   }
 
+  // Reset everything back to the intro so the quiz can be taken again.
   function handleRestart() {
     setStep(0);
     setAnswers([]);
     setSelected(null);
   }
 
+  // Only compute the result once we've reached the result screen.
   const result = isResult ? getResult(answers) : null;
 
   return (
     <div style={{ padding: "1.5rem 0", fontFamily: "var(--font-sans)" }}>
 
-      {/* ── Intro ── */}
+      {/* -- Intro -- */}
       {isIntro && (
         <div>
           <p style={{ color: "var(--color-text-secondary)", marginBottom: "1.25rem", fontSize: 15, lineHeight: 1.6 }}>
@@ -278,10 +344,10 @@ export default function DistroQuiz() {
         </div>
       )}
 
-      {/* ── Question ── */}
+      {/* -- Question -- (shown when we're past the intro but not yet at the result) */}
       {!isIntro && !isResult && currentQ && (
         <div>
-          {/* Progress bars */}
+          {/* Progress bars: one per question, filled (i < step) for ones already passed */}
           <div style={{ display: "flex", gap: 6, marginBottom: "1.5rem" }}>
             {questions.map((_, i) => (
               <div key={i} style={styles.progressBar(i < step)} />
@@ -301,6 +367,8 @@ export default function DistroQuiz() {
             gap: 10,
             marginBottom: "1.25rem",
           }}>
+            {/* Render one button per option. Clicking sets it as `selected`;
+                isSelected then drives the styling and the checkmark below. */}
             {currentQ.options.map((opt) => {
               const isSelected = selected === opt.id;
               return (
@@ -328,13 +396,15 @@ export default function DistroQuiz() {
             })}
           </div>
 
+          {/* Button label changes on the last question. It's disabled until an
+              option is picked (!!selected turns the value into a true/false). */}
           <button style={styles.nextBtn(!!selected)} disabled={!selected} onClick={handleNext}>
-            {step === totalQ ? "See my result →" : "Next →"}
+            {step === totalQ ? "See my result ->" : "Next ->"}
           </button>
         </div>
       )}
 
-      {/* ── Result ── */}
+      {/* -- Result -- (the winning distro from getResult) */}
       {isResult && result && (
         <div>
           <p style={{ fontSize: 13, color: "var(--color-text-secondary)", margin: "0 0 0.5rem" }}>
