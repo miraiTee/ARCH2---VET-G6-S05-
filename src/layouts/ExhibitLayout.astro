@@ -37,28 +37,17 @@ const baseUrl = import.meta.env.BASE_URL;
     <body>
         <header class="header">
             <div class="header__titleblock">
+                <a href={baseUrl} class="button">
+                    <Icon name="ic:round-home" />
+                </a>
+
                 <strong>{title}</strong>
                 <span class="header__subtitle">by {author}</span>
             </div>
 
-            <a href={baseUrl} class="button">
-                <Icon name="ic:round-arrow-back" />
-                <span>Back to home</span>
-            </a>
         </header>
 
         <main class="content">
-            <div class="content__block">
-                <div class="content__titlemeta">
-                    <h1>{headings?.find(h => h.depth === 1)?.text || title}</h1>
-                    <span>by {author} ・ {readingTime || '5 minute read'}</span>
-                </div>
-
-                <article class="article">
-                    <slot />
-                </article>
-            </div>
-
             {headings && headings.length > 0 && (
                 <nav class="toc">
                     <h2>Table of contents</h2>
@@ -71,6 +60,19 @@ const baseUrl = import.meta.env.BASE_URL;
                     </ul>
                 </nav>
             )}
+
+            <div class="content__block">
+                <div class="content__titlemeta">
+                    <h1>{headings?.find(h => h.depth === 1)?.text || title}</h1>
+                    <span>by {author} ・ {readingTime || '5 minute read'}</span>
+                </div>
+
+                <article class="article">
+                    <slot />
+                </article>
+            </div>
+
+            <div class="toc padder"></div>
         </main>
 
         <footer>CSARCH2 Virtual Exhibit &mdash; "Computer Architecture is Forever"</footer>

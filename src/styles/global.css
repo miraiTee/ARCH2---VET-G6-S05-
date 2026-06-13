@@ -2,10 +2,10 @@
 * Do NOT modify this file. Any new CSS by you must be created as a separate
 * file in the styles/ directory. If you find yourself needing to modify
 * something in this file, seek support from your instructor.
-*/ 
+*/
 
 :root {
-    --accent: #e8828a;
+    --accent: #5076a7;
     --bg1: #e2e2e2;
     --bg2: #ffffff;
     --text: #1e1e1e;
@@ -16,8 +16,26 @@
     --small: 0.8rem;
 }
 
+/* https://css-pattern.com/cubes-illusion/ */
+html {
+    --s: 200px; /* control the size*/
+    --c1: #2c2c2c;
+    --c2: #464148;
+    --c3: #3c3738;
+
+    background:
+        repeating-conic-gradient(from 30deg, #0000 0 120deg, var(--c3) 0 50%)
+            calc(var(--s) / 2) calc(var(--s) * tan(30deg) / 2),
+        repeating-conic-gradient(
+            from 30deg,
+            var(--c1) 0 60deg,
+            var(--c2) 0 120deg,
+            var(--c3) 0 50%
+        );
+    background-size: var(--s) calc(var(--s) * tan(30deg));
+}
+
 body {
-    background: linear-gradient(135deg, #fce7f3 0%, #fef9c3 100%);
     color: var(--text);
     font-family: "Noto Sans Variable", sans-serif;
     line-height: 1.5;
@@ -28,13 +46,29 @@ body {
 
 /* Top header bar */
 
+.title,
+.subtitle {
+    margin-bottom: 0;
+    color: var(--bg2);
+    text-align: center;
+    font-size: 3rem;
+    font-family: "Lora Variable";
+    text-shadow: 5px 5px 0px var(--text);
+}
+
+.subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
 .header {
     align-items: center;
     justify-content: space-between;
     color: var(--text);
     display: flex;
     gap: 1rem;
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
 }
 
 .header__titleblock {
@@ -43,25 +77,29 @@ body {
     align-items: center;
 }
 
-.header__subtitle { font-size: var(--small); opacity: 0.8; }
+.header__subtitle {
+    font-size: var(--small);
+    opacity: 0.8;
+}
 
 .button {
     align-items: center;
     background-color: var(--bg2);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
+    border-radius: 100px;
+    border: 2px solid var(--border);
     color: var(--text);
     display: inline-flex;
     gap: 0.5rem;
     padding: 0.5rem;
     text-decoration: none;
     transition: border-color 0.1s ease;
-    font-size: var(--small);
+    font-size: 1rem;
     flex-shrink: 0;
 }
 
 .button:hover {
     border-color: var(--accent);
+    color: var(--accent);
 }
 
 /* Main body */
@@ -70,7 +108,7 @@ body {
     display: flex;
     flex-direction: column-reverse;
     gap: 1rem;
-    max-width: 800px;
+    max-width: 100%;
     margin: auto;
     padding: 0 1.5rem;
     flex: 1;
@@ -89,21 +127,35 @@ body {
 
 .content__titlemeta h1 {
     margin-top: 0;
-    font-family: "Lora Variable"
+    font-family: "Lora Variable";
 }
 
 /* Main exhibit article content */
 
-.article, .content__titlemeta, .exhibitlink {
+.header__titleblock,
+.article,
+.content__titlemeta,
+.exhibitlink {
     background: var(--bg2);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 2rem;
+    box-shadow: 5px 5px;
 }
 
-.article h2, .article h3, .article h4, .article h5, .article h6 {
-    font-family: "Lora Variable"; 
-    border-bottom: 1px solid var(--border); 
+.header__titleblock {
+    flex: 1;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.article h2,
+.article h3,
+.article h4,
+.article h5,
+.article h6 {
+    font-family: "Lora Variable";
+    border-bottom: 1px solid var(--border);
 }
 
 /* Table of contents */
@@ -115,6 +167,12 @@ body {
     flex: 1;
     height: fit-content; /* Prevents stretching */
     padding: 2rem;
+    box-shadow: 5px 5px;
+}
+
+.padder {
+    box-shadow: none;
+    visibility: hidden;
 }
 
 .toc h2 {
@@ -150,7 +208,7 @@ footer {
 
 @media (min-width: 1100px) {
     .content {
-        max-width: 1200px; /* Expanded width to easily fit both columns */
+        max-width: 100%; /* Expanded width to easily fit both columns */
         display: flex;
         flex-direction: row;
     }
@@ -160,4 +218,3 @@ footer {
         top: 2rem; /* Gap between top of viewport and component during scroll */
     }
 }
-
