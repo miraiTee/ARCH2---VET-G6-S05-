@@ -9,6 +9,7 @@ Group 6 - S05
 * Ruiz, Joseph Benjamin
 
 > **Github Link:** https://github.com/miraiTee/ARCH2---VET-G6-S05-
+
 > **Website Deployment Link** https://miraitee.github.io/ARCH2---VET-G6-S05-/ARM-architecture/#arm1-gate-level-simulation
 ---
 
