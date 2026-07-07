@@ -8,8 +8,8 @@ Group 6 - S05
 * Roldan, Beatrice
 * Ruiz, Joseph Benjamin
 
-**Github Link:** https://github.com/miraiTee/ARCH2---VET-G6-S05-
-**Website Deployment Link** https://miraitee.github.io/ARCH2---VET-G6-S05-/ARM-architecture/#arm1-gate-level-simulation
+> **Github Link:** https://github.com/miraiTee/ARCH2---VET-G6-S05-
+> **Website Deployment Link** https://miraitee.github.io/ARCH2---VET-G6-S05-/ARM-architecture/#arm1-gate-level-simulation
 ---
 
 ### Brief Introduction to ARM Architecture
@@ -49,6 +49,8 @@ Section 5 shows a simulation of ARM1 in action under Gate Level Simulation.
 An Interactive Power-Efficiency Scale, showcasing ARM’s computing power in terms of MIPS throughout each major ARM chip developed in this. The diagram would feature an interactive slider representing historical eras, from the first ARM chip to present day. The slider would look like a battery cell, and as the user drags the slider the interface would change to showcase a specific milestone in that era. Additionally, we could add a small gamified element at the end of the diagram after the users have looked at all the eras of ARM chips. For example, it would ask the user to pick which chip would run properly given a strict power budget (users will answer using the info given from the diagram).
 
 The exhibit also features a detailed look into the insides of the ARM1 Chip, through the use of stars that hover around each important area that displays information about it.
+
+
 <img src="arm1_interactive.png" alt="ARM1 Interactive" width="700">
 
 ---
