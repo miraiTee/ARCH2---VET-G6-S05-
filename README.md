@@ -42,6 +42,20 @@ The exhibit will show the state and developments in computer architecture at the
 
 ---
 
+### ● Midmilestone State
+- One of the major milestones was completing the interactive ARM1 chip exploration, allowing visitors to inspect different functional blocks of the processor through an image map with hoverable information. Another thing is a gate level simulation of the ARM1 borrowed from aa different website, allowing viewers to see the historic chip in action. Hoping that users would be curious to find such information abundant if one were to look and find for it. Both of these elemnts aare crucial in demonstrating the monumental ARM1 chip tht would effectively define the company. The website includes the core development of ARM's industries such as the ARM Classic processors, Cortex processor families, and ARM Neoverse.
+
+### ● Discoveries.
+- The designers wanted an instruction set that was simple, orthogonal, and easy for compilers to target. Since C was the dominant systems programming language, ARM was optimized for C code generation rather than for assembly programming or a specific operating system. The ARM architecture was designed to efficiently support C and other high-level programming languages, making it easy for compilers to generate optimized machine code.
+- RISC-based architectures offer greater flexibility in balancing performance, power consumption, and design complexity. Although x86-64 retains an advantage in some markets due to backward compatibility, its higher design cost and power requirements make it less suitable for mobile devices. The efficiency of RISC designs is one of the key reasons they became widely used in cell phones and smartphones.
+- Large-scale AI systems also need powerful, efficient CPUs to coordinate, feed, and manage the accelerators. ARM has been steadily expanding its presence in data centers for many years. Even before the rise of AI, ARM-based processors were becoming widely used in storage systems, networking equipment, and other server infrastructure due to their high performance and energy efficiency.
+
+### ● Challenges
+- Finding historical information for ARM processors required referencing technical manuals, documents and archived sources. Some primers are here there for instance, the comparison table for the Cortex series.
+- ARM has over three decades of history, so deciding which processors, technologies, and milestones to highlight without overwhelming visitors was difficult.
+
+---
+
 ### ● Tech Stack Plan:
 * **Core:** Astro 6 + Node 26 + MDX + Native React hooks
 * **Interactivity:** React
