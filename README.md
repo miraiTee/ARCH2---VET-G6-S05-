@@ -38,6 +38,7 @@ Section 2 details the ARM Classic in question such as the aforementioned ARM1, w
 Section 3 showcases the different types of ARM Cortex, used for consumer devices such as cellphones and smartphones as well as embedded devices.
 Section 4 showcases the ARM Neoverse, which are designed in mind servers, cloud computing, networking, and data centers as ARM supports AI computation.
 Section 5 shows a simulation of ARM1 in action under Gate Level Simulation.
+
 ---
 
 ### ● Tech Stack Plan:
