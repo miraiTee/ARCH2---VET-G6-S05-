@@ -11,6 +11,12 @@ Group 6 - S05
 > **Github Link:** https://github.com/miraiTee/ARCH2---VET-G6-S05-
 
 > **Website Deployment Link** https://miraitee.github.io/ARCH2---VET-G6-S05-/ARM-architecture/#arm1-gate-level-simulation
+
+---
+
+### AI Disclosure
+> In the development of this exhibit and its supporting documentation, artificial intelligence tools (i.e. Google Gemini, ChatGPT, and other AI coding assistants) were not utilized.
+
 ---
 
 ### Brief Introduction to ARM Architecture
@@ -45,7 +51,7 @@ The exhibit will show the state and developments in computer architecture at the
 ### ● Midmilestone State
 - One of the major milestones was completing the interactive ARM1 chip exploration, allowing visitors to inspect different functional blocks of the processor through an image map with hoverable information. Another thing is a gate level simulation of the ARM1 borrowed from aa different website, allowing viewers to see the historic chip in action. Hoping that users would be curious to find such information abundant if one were to look and find for it. Both of these elemnts aare crucial in demonstrating the monumental ARM1 chip tht would effectively define the company. The website includes the core development of ARM's industries such as the ARM Classic processors, Cortex processor families, and ARM Neoverse.
 
-### ● Discoveries.
+### ● Discoveries
 - The designers wanted an instruction set that was simple, orthogonal, and easy for compilers to target. Since C was the dominant systems programming language, ARM was optimized for C code generation rather than for assembly programming or a specific operating system. The ARM architecture was designed to efficiently support C and other high-level programming languages, making it easy for compilers to generate optimized machine code.
 - RISC-based architectures offer greater flexibility in balancing performance, power consumption, and design complexity. Although x86-64 such as Intel and Nvidia's retains an advantage in some markets due to backward compatibility, its higher design cost and power requirements make it less suitable for mobile devices. The efficiency of RISC designs is one of the key reasons they became widely used in cell phones and smartphones.
 - Large-scale AI systems also need powerful, efficient CPUs to coordinate, feed, and manage the accelerators. ARM has been steadily expanding its presence in data centers for many years. Even before the rise of AI, ARM-based processors were becoming widely used in storage systems, networking equipment, and other server infrastructure due to their high performance and energy efficiency.
@@ -53,6 +59,19 @@ The exhibit will show the state and developments in computer architecture at the
 ### ● Challenges
 - Finding historical information for ARM processors required referencing technical manuals, documents and archived sources. Some primers are here there for instance, the comparison table for the Cortex series.
 - ARM has over three decades of history, so deciding which processors, technologies, and milestones to highlight without overwhelming visitors was difficult.
+
+---
+
+### ● Final Milestone State
+- For the final milestone, we expanded both the historical depth and updated the interactive features of the exhibit. Aiming to provide a complete narrative of ARM's journey throughout history. Beyond the initial Acorn and ARM1 narrative, we incorporated detailed context on the joint venture forming Advanced RISC Machines Ltd., focusing on key commercial turning points like Apple utilizing the ARM6 for the Newton, and Nokia deploying the ARM7TDMI to power iconic mobile devices like the Nokia 3210 and 3310.
+
+### ● Discoveries
+- ARM1 was designed from day one to be easily targeted by compilers for C code rather than optimized for assembly routines.
+- The original ARM1 contained only ~25,000 transistors. Yet delivered better instruction execution speed per watt by stripping out unnecessary instruction decoding hardware.
+
+### ● Challenges
+- Integrating React interactive widgets inside static Astro SSG templates posed initial learning curves regarding client-side hydration, prop passing, and hook lifecycle management.
+- Cross-referencing technical spec sheets from 1985 to 2026 across different manufacturing nodes led to conflicting information.
 
 ---
 
