@@ -15,29 +15,8 @@ export default function BenchmarkGallery({ benchmarks = [] }) {
 
   const percentage = (item.benchmark / maxBenchmark) * 100;
 
-  const next = () => {
-    setCurrent((prev) => (prev + 1) % benchmarks.length);
-  };
-
-  const previous = () => {
-    setCurrent((prev) =>
-      (prev - 1 + benchmarks.length) % benchmarks.length
-    );
-  };
-
   return (
     <div className="benchmark-gallery">
-
-      <div className="image-container">
-        <button onClick={previous}>◀</button>
-
-        <img
-          src={item.image}
-          alt={item.name}
-        />
-
-        <button onClick={next}>▶</button>
-      </div>
 
       <div className="info">
         <h3>{item.name}</h3>
