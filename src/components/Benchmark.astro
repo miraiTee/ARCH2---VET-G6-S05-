@@ -32,7 +32,7 @@ const card = document.getElementById("card");
 
 function render() {
   const b = benchmarks[index];
-  const percent = (b.benchmark / maxBenchmark) * 100;
+  const percent = Math.max((b.benchmark / maxBenchmark) * 100, 2);
 
   card.innerHTML = `
     <div class="benchmark-card">
@@ -74,3 +74,76 @@ window.addEventListener("keydown", e => {
     document.getElementById("prev").click();
 });
 </script>
+
+<style>
+.benchmark-viewer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+}
+
+#card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.benchmark-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+}
+
+.benchmark-card img {
+  width: 350px;
+  height: 350px;
+  object-fit: contain;
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.benchmark {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.bar {
+  width: 40px;
+  height: 200px;
+  background: #ddd;
+  display: flex;
+  align-items: flex-end;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.fill {
+  width: 100%;
+  background: #4caf50;
+  min-height: 3px;
+  transition: height 0.3s ease;
+}
+
+.info {
+  text-align: left;
+}
+
+button {
+  font-size: 30px;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.hint {
+  text-align: center;
+}
+</style>
