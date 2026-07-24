@@ -12,7 +12,7 @@ import TextWithImage from "../components/TextWithImage.astro"
 import ImageGallery from '../components/ImageGallery.jsx';
 import DistroQuiz from "../components/DistroQuiz.jsx"
 import InteractiveImageMap from "../components/InteractiveImageMap.jsx";
-import Benchmark from "../components/Benchmark.astro";
+import BenchmarkGallery from "../components/BenchmarkGallery.jsx";
 
 {/* Images have to be imported manually */}
 
@@ -210,7 +210,10 @@ Instead of powering personal electronics, Neoverse processors are meticulously o
 ## Performance Benchmarks
 Compare and contrast the power difference between ARM Classics and ARM Cortex ones with this interactive model.
 
-<Benchmark
+ARM Classic Performance (MIPS)
+<br />
+<BenchmarkGallery
+  client:load
   benchmarks={[
     {
       name: "ARM1",
@@ -232,25 +235,32 @@ Compare and contrast the power difference between ARM Classics and ARM Cortex on
       benchmark: 15,
       metric: "MIPS",
       value: "15 MIPS"
-    },
+    }
+  ]}
+/>
+<br />
+Cortex Performance (DMIPS/MHz)
+<br />
+<BenchmarkGallery
+  client:load
+  benchmarks={[
     {
       name: "Cortex-M7",
       image: cortexm.src,
-      benchmark: 5.01,
-      metric: "CoreMark/MHz",
-      value: "5.01"
+      benchmark: 2.14,
+      metric: "DMIPS/MHz",
+      value: "2.14 DMIPS/MHz"
     },
     {
       name: "Cortex-R (ARMv8-R)",
       image: cortexr.src,
-      benchmark: 5.82,
-      metric: "CoreMark/MHz",
-      value: "5.82"
+      benchmark: 3.4,
+      metric: "DMIPS/MHz",
+      value: "3.4 DMIPS/MHz"
     }
   ]}
 />
-
-
+<br />
 ## References
 
 - Acorn Computers. (n.d.). ARM hardware reference manual. https://acorn.huininga.nl/pub/docs/manuals/Acorn/ARM%20Evaluation%20System/ARM%20Evaluation%20System%20-%20ARM%20Hardware%20Reference%20Manual.pdf
