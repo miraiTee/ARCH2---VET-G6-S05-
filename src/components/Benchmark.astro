@@ -1,7 +1,6 @@
 ---
 export interface BenchmarkData {
   name: string;
-  image: string;
   benchmark: number;
   metric: string;
   value: string;
@@ -13,137 +12,77 @@ export interface Props {
 
 const { benchmarks } = Astro.props;
 
-const maxBenchmark = Math.max(...benchmarks.map(b => b.benchmark));
+const maxBenchmark = Math.max(
+  ...benchmarks.map((b) => b.benchmark)
+);
 ---
 
-<div class="benchmark-viewer">
-  <button id="prev">◀</button>
+<div class="benchmark-list">
+  {benchmarks.map((item) => {
+    const percentage = (item.benchmark / maxBenchmark) * 100;
 
-  <div id="card"></div>
-
-  <button id="next">▶</button>
-</div>
-
-<p class="hint">Use ← and → keys</p>
-
-<script define:vars={{ benchmarks, maxBenchmark }}>
-let index = 0;
-const card = document.getElementById("card");
-
-function render() {
-  const b = benchmarks[index];
-  const percent = Math.max((b.benchmark / maxBenchmark) * 100, 2);
-
-  card.innerHTML = `
-    <div class="benchmark-card">
-      <img src="${b.image}" alt="${b.name}">
-      <div class="stats">
-        <div class="benchmark">
-          <div class="bar">
-            <div class="fill" style="height:${percent}%"></div>
-          </div>
-          <span>${b.value}</span>
+    return (
+      <div class="benchmark">
+        <div class="info">
+          <h3>{item.name}</h3>
+          <p>{item.metric}: {item.value}</p>
         </div>
 
-        <div class="info">
-          <h3>${b.name}</h3>
-          <p><strong>${b.metric}</strong></p>
+        <div class="bar-container">
+          <div
+            class="bar-fill"
+            style={`width:${percentage}%`}
+          >
+            {percentage.toFixed(1)}%
+          </div>
         </div>
       </div>
-    </div>
-  `;
-}
-
-render();
-
-document.getElementById("next").onclick = () => {
-  index = (index + 1) % benchmarks.length;
-  render();
-};
-
-document.getElementById("prev").onclick = () => {
-  index = (index - 1 + benchmarks.length) % benchmarks.length;
-  render();
-};
-
-window.addEventListener("keydown", e => {
-  if (e.key === "ArrowRight")
-    document.getElementById("next").click();
-
-  if (e.key === "ArrowLeft")
-    document.getElementById("prev").click();
-});
-</script>
+    );
+  })}
+</div>
 
 <style>
-.benchmark-viewer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-  width: 100%;
-}
-
-#card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.benchmark-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 500px;
-}
-
-.benchmark-card img {
-  width: 350px;
-  height: 350px;
-  object-fit: contain;
-}
-
-.stats {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  margin-top: 20px;
+.benchmark-list {
+  display:flex;
+  flex-direction:column;
+  gap:1.5rem;
 }
 
 .benchmark {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.bar {
-  width: 40px;
-  height: 200px;
-  background: #ddd;
-  display: flex;
-  align-items: flex-end;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.fill {
-  width: 100%;
-  background: #4caf50;
-  min-height: 3px;
-  transition: height 0.3s ease;
+  display:flex;
+  align-items:center;
+  gap:2rem;
 }
 
 .info {
-  text-align: left;
+  width:200px;
 }
 
-button {
-  font-size: 30px;
-  cursor: pointer;
-  padding: 5px 10px;
+.info h3 {
+  margin:0;
 }
 
-.hint {
-  text-align: center;
+.info p {
+  margin:0.25rem 0;
+}
+
+.bar-container {
+  flex:1;
+  height:35px;
+  background:#222;
+  border-radius:8px;
+  overflow:hidden;
+}
+
+.bar-fill {
+  height:100%;
+  background:#4caf50;
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  padding-right:10px;
+  color:white;
+  font-weight:bold;
+  transition:width .5s ease;
 }
 </style>
