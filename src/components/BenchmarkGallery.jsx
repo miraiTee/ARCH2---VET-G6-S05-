@@ -26,37 +26,95 @@ export default function BenchmarkGallery({ benchmarks = [] }) {
   };
 
   return (
-    <div className="benchmark-gallery">
+    <>
+      <style>{`
+        .benchmark-gallery {
+          width: 100%;
+          margin: 30px auto;
+          text-align: center;
+        }
 
-      <div className="image-container">
-        <button onClick={previous}>◀</button>
+        .image-container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 20px;
+        }
 
-        <img
-          src={item.image}
-          alt={item.name}
-        />
+        .image-container button {
+          cursor: pointer;
+          padding: 10px 15px;
+          font-size: 20px;
+        }
 
-        <button onClick={next}>▶</button>
-      </div>
+        .image-container img {
+          width: 300px;
+          height: 200px;
+          object-fit: contain;
+        }
 
-      <div className="info">
-        <h3>{item.name}</h3>
-        <p>
-          {item.metric}: {item.value}
-        </p>
-      </div>
+        .info h3 {
+          margin-bottom: 5px;
+        }
 
-      <div className="bar-container">
-        <div
-          className="bar-fill"
-          style={{
-            width: `${percentage}%`
-          }}
-        >
-          {percentage.toFixed(1)}%
+        .info p {
+          margin-bottom: 20px;
+        }
+
+        .bar-container {
+          width: 80%;
+          height: 30px;
+          margin: auto;
+          background: #e0e0e0;
+          border-radius: 15px;
+          overflow: hidden;
+        }
+
+        .bar-fill {
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #4caf50;
+          color: white;
+          font-weight: bold;
+          transition: width 0.4s ease;
+        }
+      `}</style>
+
+      <div className="benchmark-gallery">
+
+        <div className="image-container">
+          <button onClick={previous}>◀</button>
+
+          <img
+            src={item.image}
+            alt={item.name}
+          />
+
+          <button onClick={next}>▶</button>
         </div>
-      </div>
 
-    </div>
+        <div className="info">
+          <h3>{item.name}</h3>
+
+          <p>
+            {item.metric}: {item.value}
+          </p>
+        </div>
+
+        <div className="bar-container">
+          <div
+            className="bar-fill"
+            style={{
+              width: `${percentage}%`
+            }}
+          >
+            {percentage.toFixed(1)}%
+          </div>
+        </div>
+
+      </div>
+    </>
   );
 }
