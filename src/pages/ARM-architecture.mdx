@@ -208,13 +208,17 @@ The ARM Cortex family spans a full range of performance and power tradeoffs, wit
 Instead of powering personal electronics, Neoverse processors are meticulously optimized for servers, data centers, edge computing, and high-performance networking equipment. By focusing on high throughput, energy efficiency, and massive scalability, they allow cloud providers to seamlessly handle millions of simultaneous requests while drastically reducing total power consumption. Ultimately, as the global demand for cloud services and artificial intelligence continues to grow, Neoverse has solidified its role as a key component in modern server infrastructure and supercomputing environments.
 
 ## Performance Benchmarks
-Compare and contrast the power difference between ARM Classics and ARM Cortex ones with this interactive model.
+Compare the performance evolution of ARM Classic and ARM Cortex processors through their respective benchmarks.
+<br />
+<br />
+Note that MIPS and DMIPS/MHz are not directly comparable, as they use different measurement standards: 
+<br/ >
+MIPS measures total instruction throughput, while DMIPS/MHz measures benchmark efficiency per clock cycle.
 
 ARM Classic Performance (MIPS)
 <br />
 <BenchmarkGallery
   client:load
-  key="arm-classic"
   benchmarks={[
     {
       name: "ARM1",
@@ -243,7 +247,6 @@ ARM Classic Performance (MIPS)
 Cortex Performance (DMIPS/MHz)
 <br />
 <BenchmarkGallery
-  key="arm-cortex"
   client:load
   benchmarks={[
     {
