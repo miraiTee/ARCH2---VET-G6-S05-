@@ -188,6 +188,17 @@ The ARM3 comprises some 300 000 transistors, more than ten times as many as ARM2
 
 The transition from ARM2 to ARM3 marked a doubling down on the Reduced Instruction Set Computing (RISC) philosophy. Unlike traditional processors that rely on complex, variable-length instructions requiring heavy hardware decoding, ARM utilizes fixed-length, simple instructions. This design allows the processor to execute operations in a single clock cycle with minimal transistor overhead. Because each instruction is uniform, the chip requires less power and generates significantly less heat than contemporary CISC-based architectures, establishing the efficiency footprint that remains ARM's core advantage.
 
+### ARM Developmnet into Phones.
+
+Arm officially became an independent company in November 1990 under the name Advanced RISC Machines Ltd. It was established as a joint venture involving Acorn Computers, Apple Computer, and VLSI Technology. 
+<br />
+
+In 1993, Arm signed a deal with silicon vendor Texas Instruments, with the company advising Nokia to use the Arm designs for its upcoming GSM mobile phones. The Arm-powered Nokia 6110 GSM mobile phone was a massive success, with the Arm7 processor (ARM7-TDMI)  becoming the flagship mobile design for Arm. 
+<br />
+
+The introduction of the world’s first smartphones in 2007 created yet more demand for increased performance that maintained a long battery life, while catering to a wide range of new computing capabilities due to the rise of mobile applications. Arm responded to this challenge with its Cortex-A9 CPU multi-core processor, before introducing the innovative “big.Little” approach in 2011, which combined a powerful core for high-performance with a lower power core when high-performance was not needed. This approach is still used by Arm today. 
+<br />
+
 ## ARM Cortex Cores
 
 The ARM Cortex family spans a full range of performance and power tradeoffs, with each sub-family built for a different job. Cortex-M handles low-power microcontrollers and embedded systems like wearables and IoT sensors, using the compact Thumb instruction set to fit 32-bit performance into tight memory and power budgets. Cortex-R prioritizes deterministic, fault-tolerant real-time response over raw speed, making it suited to safety-critical systems such as automotive ABS, industrial controllers, and aerospace. Cortex-A and Cortex-X both target full-OS devices like phones and laptops, balancing performance and battery life differently, and are often combined through big.LITTLE architecture so a single device can idle efficiently and still burst to high performance when needed.
@@ -196,6 +207,14 @@ The ARM Cortex family spans a full range of performance and power tradeoffs, wit
 <ImageGallery photos={photos} client:load />
 
 <br />Together, these four families form a continuous ladder, from ultra-low-power microcontrollers, to guaranteed-response embedded control, to everyday mobile computing, to peak-performance flagship processing, all built on a shared instruction-set architecture. This range is what has made ARM cores foundational across such a wide span of modern computing, powering devices from simple fitness trackers to high-end smartphones.
+
+### Arm and AI
+
+Arm has maintained a presence in data centers for many years, gaining popularity in storage servers and network switches even before the rise of AI.
+<br />
+
+Major hyperscale cloud providers have widely adopted Arm architecture for their in-house processors used in general-purpose computing, not just AI workloads. Since these chips are developed internally, the associated revenues are typically not reflected in Arm's commercial sales figures. As Arm has become more widely accepted across the industry, it has established itself as a mainstream computing architecture and paved the way for increased competition and innovation in the processor market.
+<br />
 
 ##  ARM Neoverse
 
@@ -225,6 +244,7 @@ Want to see how a real ARM processor works, right down to the individual logic g
 
 ## References
 
+# ARM references
 - Acorn Computers. (n.d.). ARM hardware reference manual. https://acorn.huininga.nl/pub/docs/manuals/Acorn/ARM%20Evaluation%20System/ARM%20Evaluation%20System%20-%20ARM%20Hardware%20Reference%20Manual.pdf
 - Arc. (n.d.). ARM3. https://arcwiki.org.uk/index.php/ARM3
 - Arm. (n.d.). Arm architecture. https://www.arm.com/architecture
@@ -235,13 +255,19 @@ Want to see how a real ARM processor works, right down to the individual logic g
 - Computer History Museum. (n.d.). Acorn computers interview. https://archive.computerhistory.org/resources/access/text/2012/06/102746190-05-01-acc.pdf
 - CPU Shack. (2010, March 31). The origin of ARM: New finds for the museum. https://www.cpushack.com/2010/03/31/the-origin-of-arm-new-finds-for-the-museum/
 - Jia, J. (n.d.). CPU comparison: Branch prediction. https://jia.je/cpu/comparison.html#branch-prediction
+
+# Early ARM (ARM Classics)
+- Van Someren, A., & Atack, C. (1994). The ARM RISC chip: A programmer's guide. Archive Copy from https://web.archive.org/web/20250805233033/http://arcarc.nl/archive/Books/The%20ARM%20RISC%20Chip%20-%20A%20Programmer's%20Guide%20-%20Alex%20Van%20Someren%20&%20Carol%20Atack/The%20ARM%20RISC%20Chip%20-%20A%20Programmer's%20Guide%20-%20Alex%20Van%20Someren%20&%20Carol%20Atack.pdf
 - Ken Shirriff. (2015, December). Reverse engineering the ARM1. https://www.righto.com/2015/12/reverse-engineering-arm1-ancestor-of.html
 - Sunstream Global. (n.d.). Exploring the applications of 32-bit ARM Cortex-M based microcontrollers. https://www.sunstreamglobal.com/exploring-the-applications-of-32-bit-arm-cortex-m-based-microcontrollers/
-- Van Someren, A., & Atack, C. (n.d.). The ARM RISC chip: A programmer's guide. https://web.archive.org/web/20250805233033/http://arcarc.nl/archive/Books/The%20ARM%20RISC%20Chip%20-%20A%20Programmer's%20Guide%20-%20Alex%20Van%20Someren%20&%20Carol%20Atack/The%20ARM%20RISC%20Chip%20-%20A%20Programmer's%20Guide%20-%20Alex%20Van%20Someren%20&%20Carol%20Atack.pdf
 - Visual6502. (n.d.). ARM1 visual simulation. http://visual6502.org/sim/varm/armgl.html
+
+# History of ARM through Weir J.
 - Weir, J. (2022, September 22). A history of ARM, part 1: Building the first chip. Ars Technica. https://arstechnica.com/gadgets/2022/09/a-history-of-arm-part-1-building-the-first-chip/
 - Weir, J. (2022, November 23). A history of ARM, part 2: Everything starts to come together. Ars Technica. https://arstechnica.com/gadgets/2022/11/a-history-of-arm-part-2-everything-starts-to-come-together/
 - Weir, J. (2023, January 18). A history of ARM, part 3: Coming full circle. Ars Technica. https://arstechnica.com/gadgets/2023/01/a-history-of-arm-part-3-coming-full-circle/
+
+# Some Wikipedia References
 - Wikipedia. (n.d.). Acorn Computers. https://en.wikipedia.org/wiki/Acorn_Computers
 - Wikipedia. (n.d.). ARM architecture. https://en.wikipedia.org/wiki/ARM_architecture
 - Wikipedia. (n.d.). List of ARM processors. https://en.wikipedia.org/wiki/List_of_ARM_processors
