@@ -1,0 +1,76 @@
+---
+export interface BenchmarkData {
+  name: string;
+  image: string;
+  benchmark: number;
+  metric: string;
+  value: string;
+}
+
+export interface Props {
+  benchmarks: BenchmarkData[];
+}
+
+const { benchmarks } = Astro.props;
+
+const maxBenchmark = Math.max(...benchmarks.map(b => b.benchmark));
+---
+
+<div class="benchmark-viewer">
+  <button id="prev">◀</button>
+
+  <div id="card"></div>
+
+  <button id="next">▶</button>
+</div>
+
+<p class="hint">Use ← and → keys</p>
+
+<script define:vars={{ benchmarks, maxBenchmark }}>
+let index = 0;
+const card = document.getElementById("card");
+
+function render() {
+  const b = benchmarks[index];
+  const percent = (b.benchmark / maxBenchmark) * 100;
+
+  card.innerHTML = `
+    <div class="benchmark-card">
+      <img src="${b.image}" alt="${b.name}">
+      <div class="stats">
+        <div class="benchmark">
+          <div class="bar">
+            <div class="fill" style="height:${percent}%"></div>
+          </div>
+          <span>${b.value}</span>
+        </div>
+
+        <div class="info">
+          <h3>${b.name}</h3>
+          <p><strong>${b.metric}</strong></p>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+render();
+
+document.getElementById("next").onclick = () => {
+  index = (index + 1) % benchmarks.length;
+  render();
+};
+
+document.getElementById("prev").onclick = () => {
+  index = (index - 1 + benchmarks.length) % benchmarks.length;
+  render();
+};
+
+window.addEventListener("keydown", e => {
+  if (e.key === "ArrowRight")
+    document.getElementById("next").click();
+
+  if (e.key === "ArrowLeft")
+    document.getElementById("prev").click();
+});
+</script>
